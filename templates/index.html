@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>GMaps API Key Scanner</title></head>
+<body>
+  <h1>GMaps API Key Scanner</h1>
+  <form method="POST">
+    <input type="text" name="apikey" placeholder="Enter Google Maps API Key" required>
+    <button type="submit">Scan</button>
+  </form>
+
+  {% if result %}
+    <h2>Result:</h2>
+    <pre>{{ result }}</pre>
+  {% endif %}
+</body>
+</html>
