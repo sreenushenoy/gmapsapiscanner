@@ -9,9 +9,10 @@ def scan_gmaps(apikey):
 	from modules.Scanner import Scanner
 	scanner = Scanner(api_key)
 	result = scanner.scan()
-    	return result
+	
         output = []
 	output.append(f"Scanner Results: {result}")
+	
 	vulnerable_apis = []
 	url = "https://maps.googleapis.com/maps/api/staticmap?center=45%2C10&zoom=7&size=400x400&key="+apikey 
 	response = requests.get(url, verify=False)
