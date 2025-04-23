@@ -1,13 +1,13 @@
 import requests
 import warnings
 import os
-from modules.Scanner import Scanner
+#from modules.Scanner import Scanner
 
 def scan_gmaps(apikey):
     results = []
-    scanner = Scanner(apikey)
-    scan_result = scanner.scan()
-    results.append(f"Scanner Module Result:\n{scan_result}\n")
+    #scanner = Scanner(apikey)
+    #scan_result = scanner.scan()
+    #results.append(f"Scanner Module Result:\n{scan_result}\n")
 
     vulnerable_apis = []
 
