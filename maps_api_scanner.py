@@ -34,8 +34,11 @@ def scan_gmaps(apikey):
                 try:
                     reason = res.json().get(error_field, "No error message.")
                 except:
-                    reason = res.content.decode(errors='ignore')
-                results.append(f"🟢 {name} is NOT vulnerable.\nReason: {reason}\n")
+                    if "image" in res.headers.get("Content-Type", ""):
+                        reason = "Binary image content returned (likely a valid response, not an error)."
+                    else:
+                        reason = res.content.decode(errors='ignore')
+                    results.append(f"🟢 {name} is NOT vulnerable.\nReason: {reason}\n")
         except Exception as e:
             results.append(f"⚠️ Error testing {name}: {str(e)}")
 
