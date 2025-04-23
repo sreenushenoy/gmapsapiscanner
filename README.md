@@ -1,17 +1,12 @@
-# Google Maps API Scanner
+# Google Maps API Scanner Web Based
 Used for determining whether a leaked/found Google Maps API Key is vulnerable to unauthorized access by other applications or not.  
 
-***[Blog Post #1 - Unauthorized Google Maps API Key Usage Cases, and Why You Need to Care](https://medium.com/bugbountywriteup/unauthorized-google-maps-api-key-usage-cases-and-why-you-need-to-care-1ccb28bf21e)***
-
-***[Blog Post #2 - Google Maps API (Not the Key) Bugs That I Found Over the Years](https://medium.com/bugbountywriteup/google-maps-api-not-the-key-bugs-that-i-found-over-the-years-781840fc82aa)***
-
-***Please note that most of the bug bounty platforms marking this vulnerability type as informational/low impact. So please make sure that the platform or program is accepting this kind of issues before reporting.***
+Please Note:- This is Not Devloped by me. I have justed Modifed Few code, All the Logic and Hardwork was done by https://github.com/ozguralp 
 
 
 ***Usage:***
-- Download `maps_api_scanner.py` file and run as: `python3 maps_api_scanner.py` & paste API key wanted to test when asked. (Python2 is no longer supported.)
-- Script will return `API key is vulnerable for XXX API!` message and the PoC link/code if determines any unauthorized access within this API key within any API's.
-- Now it supports also api key as argument such as `python3 maps_api_scanner.py --api-key API_KEY`. 
+- Visit https://gmapsapiscannerweb.onrender.com/
+- As Of now No POC, Will be added Later 
 
 ***Checked APIs:***
 - Staticmap API
@@ -47,9 +42,4 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 - Special thanks to [Yatin](https://twitter.com/ysirpaul) for his contributions on both discovery of additional API's & cost information!
 
 
-# Docker
-To run this script in a Dockerized Alpine Linux environment, use the following commands:
-```
-docker build -t google_maps_api_scanner .
-docker run --rm -v $(pwd):/opt/html -i docker.io/library/google_maps_api_scanner <api key>
-```
+
