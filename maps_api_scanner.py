@@ -1,14 +1,9 @@
 import requests
 import warnings
 import os
-#from modules.Scanner import Scanner
 
 def scan_gmaps(apikey):
     results = []
-    #scanner = Scanner(apikey)
-    #scan_result = scanner.scan()
-    #results.append(f"Scanner Module Result:\n{scan_result}\n")
-
     vulnerable_apis = []
 
     def check(name, url, method="GET", data=None, headers=None, expect=None, error_field="error_message", check_status=None):
@@ -38,11 +33,11 @@ def scan_gmaps(apikey):
                         reason = "Binary image content returned (likely a valid response, not an error)."
                     else:
                         reason = res.content.decode(errors='ignore')
-                    results.append(f"🟢 {name} is NOT vulnerable.\nReason: {reason}\n")
+                results.append(f"🟢 {name} is NOT vulnerable.\nReason: {reason}\n")
         except Exception as e:
             results.append(f"⚠️ Error testing {name}: {str(e)}")
 
-    # Run all checks
+    # 🌐 Core vulnerability checks
     check("Staticmap", f"https://maps.googleapis.com/maps/api/staticmap?center=45,10&zoom=7&size=400x400&key={apikey}", expect="PNG")
     check("Streetview", f"https://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&key={apikey}", expect="PNG")
     check("Directions", f"https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key={apikey}")
@@ -62,6 +57,7 @@ def scan_gmaps(apikey):
     check("Places Photo", f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key={apikey}", check_status="302")
     check("FCM API", f"https://fcm.googleapis.com/fcm/send", method="POST", data="{'registration_ids':['ABC']}", headers={'Content-Type':'application/json','Authorization':'key='+apikey})
 
+    # 🧾 Final summary
     results.append("\n------------------ SUMMARY ------------------")
     if vulnerable_apis:
         results.append("🔴 Vulnerable APIs:")
